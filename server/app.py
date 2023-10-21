@@ -50,21 +50,17 @@ def zookeeper_by_id(id):
         response = make_response(response_body, 404)
         return response
 
-
     response_body = f''' 
-        <h1>Zookeeper Details</h1>
         <ul>
+            <li>ID: {zookeeper.id}</li>
             <li>Name: {zookeeper.name}</li>
-            <li>Birthday: {zookeeper.birthday}</li>
-            <li>Animals Cared for by the Zookeeper:
-                <ul>
+            <li>Birthday: {zookeeper.birthday}</li>    
         '''
     for animal in zookeeper.animals:
-        response_body += f'<li>{animal.name}, {animal.species}</li>'
+        response_body += f'<li>Animal:{animal.name}</li>'
 
     response_body += '''
-                </ul>
-            </li>
+            
         </ul>
     '''
 
@@ -80,19 +76,17 @@ def enclosure_by_id(id):
         response = make_response(response_body, 404)
         return response
 
-
-    animals = enclosure.animals
-    animals_list = [f'<li>{animal.name}, {animal.species}</li>' for animal in animals]
-
     response_body = f'''
          
         <ul>
             <li>ID: {enclosure.id}</li>
             <li>Environment: { enclosure.environment }</li>
             <li>Open to Visitors: { enclosure.open_to_visitors }</li>
-            <li>Animals in the enclosure:
-                <ul>{''.join(animals_list)} </ul>
-            </li>
+                    '''
+    for animal in enclosure.animals:
+        response_body += f'<li>Animal:{animal.name}</li>'
+
+    response_body += '''
         </ul>'''
     response = make_response(response_body, 200)
     return response
