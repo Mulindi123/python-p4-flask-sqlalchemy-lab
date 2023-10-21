@@ -27,7 +27,7 @@ with app.app_context():
     environments = ['Desert', 'Pond', 'Ocean', 'Field', 'Trees', 'Cave', 'Cage']
 
     for n in range(25):
-        e = Enclosure(environment=rc(environments), open_to_visitors=rc([True, False]))
+        e = Enclosure(environment=rc(environments), open_to_visitors=rc([1, 0]))
         enclosures.append(e)
 
     db.session.add_all(enclosures)
